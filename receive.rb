@@ -1,6 +1,11 @@
 require "bunny"
 
-conn = Bunny.new(:automatically_recover => false)
+conn = Bunny.new(
+   :automatically_recover => false,
+   hostname: '192.168.33.33',
+   username: 'a_consumer',
+   password: 'consumer'
+)
 conn.start
 
 ch   = conn.create_channel
