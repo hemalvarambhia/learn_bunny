@@ -13,8 +13,9 @@ q    = ch.queue("hello")
 exchange = ch.default_exchange
 begin 
   loop do
-    exchange.publish("Hello World! #{rand(0..10)}", :routing_key => q.name)
-    puts " [x] Sent 'Hello World!'"
+    message = "Hello World! #{rand(0..10)}"
+    exchange.publish(message, :routing_key => q.name)
+    puts "[#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}] Sent #{message}"
     sleep 4
   end
 rescue Interrupt => exc
